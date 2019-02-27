@@ -10,9 +10,10 @@ public class ReadFile {
         //This is generally bad behavior
 
 
-        
+
         File text = new File(args[0]);
         // can be a path like: "/full/path/to/file.txt" or "../data/file.txt"
+
 
         int t=0;
         Scanner temp = new Scanner(text);
@@ -20,6 +21,7 @@ public class ReadFile {
           t++;
           temp.nextLine();
         }
+
 
         Scanner inf = new Scanner(text);  //inf stands for the input file
         char[][] list = new char[t][inf.nextLine().length()];
@@ -34,8 +36,13 @@ public class ReadFile {
             index++;
         }
 
+/*
+        for (int c1=0;c1<list.length;c1++){
+          for (int c2=0;c2<list[c1].length;c2++){
+            System.out.print(list[c1][c2]);
+          }
+        }
 
-
-
+*/
     }
 }
