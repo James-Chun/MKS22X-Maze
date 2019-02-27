@@ -6,12 +6,11 @@ import java.util.Scanner;
 
 public class ReadFile {
   public static void main(String args[]) throws FileNotFoundException {
-
-
         //instead of a try/catch, you can throw the FileNotFoundException.
         //This is generally bad behavior
 
 
+        
         File text = new File(args[0]);
         // can be a path like: "/full/path/to/file.txt" or "../data/file.txt"
 
@@ -22,9 +21,7 @@ public class ReadFile {
           temp.nextLine();
         }
 
-        //inf stands for the input file
-
-        Scanner inf = new Scanner(text);
+        Scanner inf = new Scanner(text);  //inf stands for the input file
         char[][] list = new char[t][inf.nextLine().length()];
 
         int index=0;
@@ -36,5 +33,9 @@ public class ReadFile {
             }
             index++;
         }
+
+
+
+
     }
 }
