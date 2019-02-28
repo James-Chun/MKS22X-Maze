@@ -32,14 +32,13 @@ public class Maze{
       int index=0;
       while(inf.hasNextLine()){
           String line = inf.nextLine();
-          //System.out.println(line);//hopefully you can do other things with the line
           for (int i=0;i<line.length();i++){
             maze[index][i]= line.charAt(i);
           }
           index++;
       }
 
-      if (!checkFile){
+      if (!checkFile()){
         throw new IllegalStateException("FILE IS STARTING WITH INCORRECT NUMBER OF ENDS OR STARTS");
       }
     }
@@ -51,10 +50,10 @@ public class Maze{
       boolean e = false;
       for (int i1=0;i1<maze.length;i1++){
         for (int i2=0;i2<maze[i1].length;i2++){
-          if (maze[i1][i2]=='s'&& s)return false;
-          if (maze[i1][i2]=='e'&& e)return false;
-          if (maze[i1][i2]=='s')s=true;
-          if (maze[i1][i2]=='e')e=true;
+          if (maze[i1][i2]=='S'&& s)return false;
+          if (maze[i1][i2]=='E'&& e)return false;
+          if (maze[i1][i2]=='S')s=true;
+          if (maze[i1][i2]=='S')e=true;
         }
       }
       return s && e;
@@ -94,15 +93,18 @@ public class Maze{
     public int solve(){
 
             //find the location of the S.
-
-
             //erase the S
-
-
             //and start solving at the location of the s.
-
-            //return solve(???,???);
-            return 1;
+            int row=0;
+            int col=0;
+            for (int i1=0;i1<maze.length;i1++){
+              for (int i2=0;i2<maze[i1].length;i2++){
+                if (maze[i1][i2]=='S'){
+                  row=i1; col=i2;
+                }
+              }
+            }
+            return solve(row,col);
     }
 
     /*
@@ -137,6 +139,18 @@ public class Maze{
         //COMPLETE SOLVE
 
         return -1; //so it compiles
+    }
+
+    public static void main(String[] args){
+      try{
+        Maze m = new Maze(args[0]);
+
+              System.out.println(m.solve());
+      }catch(FileNotFoundException e){
+        System.out.println("File Not Found");
+      }
+
+
     }
 
 
