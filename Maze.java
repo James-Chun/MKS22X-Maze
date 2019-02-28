@@ -91,61 +91,46 @@ public class Maze{
 
     */
     public int solve(){
-
-            //find the location of the S.
-            //erase the S
-            //and start solving at the location of the s.
-            int row=0;
-            int col=0;
-            for (int i1=0;i1<maze.length;i1++){
-              for (int i2=0;i2<maze[i1].length;i2++){
-                if (maze[i1][i2]=='S'){
-                  row=i1; col=i2;
-                }
+          int row=0;                             //find the location of the S.
+          int col=0;                             //erase the S
+          for (int i1=0;i1<maze.length;i1++){    //and start solving at the location of the s.
+            for (int i2=0;i2<maze[i1].length;i2++){
+              if (maze[i1][i2]=='S'){
+                row=i1; col=i2; maze[i1][i2]='@';
               }
             }
-            return solve(row,col);
+          }
+          return solve(row,col);
     }
 
     /*
       Recursive Solve function:
-
       A solved maze has a path marked with '@' from S to E.
-
       Returns the number of @ symbols from S to E when the maze is solved,
       Returns -1 when the maze has no solution.
 
-
       Postcondition:
-
         The S is replaced with '@' but the 'E' is not.
-
         All visited spots that were not part of the solution are changed to '.'
-
         All visited spots that are part of the solution are changed to '@'
     */
-    private int solve(int row, int col){ //you can add more parameters since this is private
+    private int solve(int row, int col, int a){ //you can add more parameters since this is private
 
-
-        //automatic animation! You are welcome.
-        if(animate){
-
+        if(animate){  //automatic animation! You are welcome.
             clearTerminal();
             System.out.println(this);
-
             wait(20);
         }
 
-        //COMPLETE SOLVE
-
+        if (maze[row][col]=='E')return a;
+        if (maze[row+1][col]!='#' && maze[row+1][col]!='@'); 
         return -1; //so it compiles
     }
 
     public static void main(String[] args){
       try{
         Maze m = new Maze(args[0]);
-
-              System.out.println(m.solve());
+        System.out.println(m.solve());
       }catch(FileNotFoundException e){
         System.out.println("File Not Found");
       }
