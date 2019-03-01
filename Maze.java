@@ -23,19 +23,18 @@ public class Maze{
 
       int t=0;
       Scanner temp = new Scanner(text);
-      while (temp.hasNextLine()){
+      while (temp.hasNextLine()){       //This block is to simply make the char[][]maze with proper dimensions
         t++;
         temp.nextLine();
       }
       Scanner temp2=new Scanner(text);
-
       maze = new char[t][temp2.nextLine().length()];
 
       Scanner inf = new Scanner(text);  //inf stands for the input file
 
       int index=0;
       while(inf.hasNextLine()){
-          String line = inf.nextLine();
+          String line = inf.nextLine();     //adding values to
           for (int i=0;i<line.length();i++){
             maze[index][i]= line.charAt(i);
           }
