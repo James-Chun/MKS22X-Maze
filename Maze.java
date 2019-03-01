@@ -20,14 +20,18 @@ public class Maze{
 
     public Maze(String filename) throws FileNotFoundException{
       File text = new File(filename);
+
       int t=0;
       Scanner temp = new Scanner(text);
       while (temp.hasNextLine()){
         t++;
         temp.nextLine();
       }
+      Scanner temp2=new Scanner(text);
+
+      maze = new char[t][temp2.nextLine().length()];
+
       Scanner inf = new Scanner(text);  //inf stands for the input file
-      maze = new char[t][inf.nextLine().length()];
 
       int index=0;
       while(inf.hasNextLine()){
@@ -38,9 +42,7 @@ public class Maze{
           index++;
       }
 
-      if (!checkFile()){
-        throw new IllegalStateException("FILE IS STARTING WITH INCORRECT NUMBER OF ENDS OR STARTS");
-      }
+      if (!checkFile()){throw new IllegalStateException("FILE IS STARTING WITH INCORRECT NUMBER OF ENDS OR STARTS");}
     }
 
 
