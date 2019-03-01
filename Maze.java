@@ -123,7 +123,7 @@ public class Maze{
             wait(20);
         }
 
-        if (maze[row][col]=='E')return a;
+        if (maze[row][col]=='E')return a; //YOURE REPLACIGN BEFORE check
 
         if (maze[row+1][col]!='#' && maze[row+1][col]!='@'){
           maze[row+1][col]='@';
