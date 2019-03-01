@@ -12,19 +12,16 @@ public class ReadFile {
 
 
         File text = new File(args[0]);
-        // can be a path like: "/full/path/to/file.txt" or "../data/file.txt"
-
-
         int t=0;
         Scanner temp = new Scanner(text);
         while (temp.hasNextLine()){
           t++;
           temp.nextLine();
         }
-
-
+        Scanner temp2=new Scanner(text);
         Scanner inf = new Scanner(text);  //inf stands for the input file
-        char[][] list = new char[t][inf.nextLine().length()];
+        char[][] list = new char[t][temp2.nextLine().length()];
+
 
         int index=0;
         while(inf.hasNextLine()){
