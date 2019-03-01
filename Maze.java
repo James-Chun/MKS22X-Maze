@@ -100,7 +100,7 @@ public class Maze{
               }
             }
           }
-          return solve(row,col);
+          return solve(row,col,1);
     }
 
     /*
@@ -123,13 +123,58 @@ public class Maze{
         }
 
         if (maze[row][col]=='E')return a;
-        if (maze[row+1][col]!='#' && maze[row+1][col]!='@'); 
+
+        if (maze[row+1][col]!='#' && maze[row+1][col]!='@'){
+          maze[row+1][col]='@';
+          if (solve(row+1,col,a+1)!=-1){
+            return solve(row+1,col,a+1);
+          }
+          maze[row+1][col]=' ';
+        }
+
+        if (maze[row-1][col]!='#' && maze[row-1][col]!='@'){
+          maze[row-1][col]='@';
+          if (solve(row-1,col,a+1)!=-1){
+            return solve(row-1,col,a+1);
+          }
+          maze[row-1][col]=' ';
+        }
+
+        if (maze[row][col+1]!='#' && maze[row][col+1]!='@'){
+          maze[row][col+1]='@';
+          if (solve(row,col+1,a+1)!=-1){
+            return solve(row,col+1,a+1);
+          }
+          maze[row][col+1]=' ';
+        }
+
+        if (maze[row][col-1]!='#' && maze[row][col-1]!='@'){
+          maze[row][col-1]='@';
+          if (solve(row,col-1,1)!=-1){
+            return solve(row,col-1,a+1);
+          }
+          maze[row][col-1]=' ';
+        }
+
         return -1; //so it compiles
     }
+
+    public String toString(){
+      String visual = "";
+      for (int i1=0;i1<maze.length;i1++){
+        for (int i2=0;i2<maze[i1].length;i2++){
+          visual += maze[i1][i2];
+        }
+        visual+="\n";
+      }
+      return visual;
+    }
+
 
     public static void main(String[] args){
       try{
         Maze m = new Maze(args[0]);
+        m.animate = true;
         System.out.println(m.solve());
       }catch(FileNotFoundException e){
         System.out.println("File Not Found");

@@ -36,13 +36,14 @@ public class ReadFile {
             index++;
         }
 
-/*
+
         for (int c1=0;c1<list.length;c1++){
           for (int c2=0;c2<list[c1].length;c2++){
             System.out.print(list[c1][c2]);
           }
+          System.out.println();
         }
 
-*/
+
     }
 }
