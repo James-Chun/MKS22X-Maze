@@ -143,7 +143,7 @@ public class Maze{
         return false;
     }
 
-private int count(){
+private int count(){    //count @ in maze
   int count = 0;
   for (int i1=0;i1<maze.length;i1++){
     for (int i2=0;i2<maze[i1].length;i2++){
