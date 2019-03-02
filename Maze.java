@@ -168,15 +168,15 @@ private int count(){    //count @ in maze
 
 
     public static void main(String[] args){
+      /*
       try{
         Maze m = new Maze(args[0]);
-        m.animate = true;
+        //m.animate = true;
         System.out.println(m.solve());
       }catch(FileNotFoundException e){
         System.out.println("File Not Found");
       }
-
-
+      */
     }
 
 
