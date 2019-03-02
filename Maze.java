@@ -22,6 +22,7 @@ public class Maze{
     public Maze(String filename) throws FileNotFoundException{
       File text = new File(filename);
 
+      //--------------------------------------------------------------------------------------------------------
       int t=0;
       Scanner temp = new Scanner(text);
       while (temp.hasNextLine()){       //This block is to simply make the char[][]maze with proper dimensions
@@ -30,12 +31,13 @@ public class Maze{
       }
       Scanner temp2=new Scanner(text);
       maze = new char[t][temp2.nextLine().length()];
+      //--------------------------------------------------------------------------------------------------------
 
       Scanner inf = new Scanner(text);  //inf stands for the input file
 
       int index=0;
       while(inf.hasNextLine()){
-          String line = inf.nextLine();     //adding values to
+          String line = inf.nextLine();     //adding values to maze
           for (int i=0;i<line.length();i++){
             maze[index][i]= line.charAt(i);
           }
@@ -47,12 +49,12 @@ public class Maze{
 
 
 
-    private boolean checkFile(){
+    private boolean checkFile(){    //checking the file for exactly one S and E
       boolean s = false;
       boolean e = false;
       for (int i1=0;i1<maze.length;i1++){
         for (int i2=0;i2<maze[i1].length;i2++){
-          if (maze[i1][i2]=='S'&& s)return false;
+          if (maze[i1][i2]=='S'&& s)return false;   //checks to see if one S or E has been found already and if another is found then return false
           if (maze[i1][i2]=='E'&& e)return false;
           if (maze[i1][i2]=='S')s=true;
           if (maze[i1][i2]=='S')e=true;
@@ -61,7 +63,8 @@ public class Maze{
       return s && e;
     }
 
-
+//------------------------------------------------------------------------------------------------------------------------------------------
+  //animation courtesy of Mr. Konstantinovich
     private void wait(int millis){
          try {
              Thread.sleep(millis);
@@ -84,7 +87,7 @@ public class Maze{
 
     }
 
-
+//------------------------------------------------------------------------------------------------------------------------------------------
 
     /*Wrapper Solve Function returns the helper function
 
@@ -102,9 +105,10 @@ public class Maze{
               }
             }
           }
-          if (solve(row,col))return 1;
+          if (solve(row,col))return 1;    //depending on whether solve helper returns true or false;
           return -1;
     }
+
 
     /*
       Recursive Solve function:
@@ -117,7 +121,7 @@ public class Maze{
         All visited spots that were not part of the solution are changed to '.'
         All visited spots that are part of the solution are changed to '@'
     */
-    private boolean solve(int row, int col){ //you can add more parameters since this is private
+    private boolean solve(int row, int col){ //solve helper
 
         if(animate){  //automatic animation! You are welcome.
             clearTerminal();
@@ -127,8 +131,8 @@ public class Maze{
         }
 
 
-        for (int i=0;i<moves.length;i++){
-          if (maze[row+moves[i][0]][col+moves[i][1]]=='E')return true;
+        for (int i=0;i<moves.length;i++){   //looping through all possible moves (moves[][])
+          if (maze[row+moves[i][0]][col+moves[i][1]]=='E')return true;   //check the spaces ahead of current position for E
           if (maze[row+moves[i][0]][col+moves[i][1]]!='#' && maze[row+moves[i][0]][col+moves[i][1]]!='@' && maze[row+moves[i][0]][col+moves[i][1]]!='X'){
             maze[row+moves[i][0]][col+moves[i][1]]='@';
             if (solve(row+moves[i][0],col+moves[i][1]))return true;
@@ -136,7 +140,7 @@ public class Maze{
           }
 
         }
-        return false; //so it compiles
+        return false;
     }
 
     public String toString(){
@@ -165,10 +169,3 @@ public class Maze{
 
 
 }
-
-
-
-
-// mark where you have been on the Maze (@)
-// mark unsuccessful moves also (if a spot has no outgoing moves then mark with x or something)
-//
