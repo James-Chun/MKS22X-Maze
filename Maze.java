@@ -123,38 +123,39 @@ public class Maze{
             wait(20);
         }
 
-        if (maze[row][col]=='E')return a; //YOURE REPLACIGN BEFORE check
 
-        if (maze[row+1][col]!='#' && maze[row+1][col]!='@'){
+        if (maze[row+1][col]=='E' || maze[row-1][col]=='E' || maze[row][col+1]=='E' || maze[row][col-1]=='E')return a;
+
+        if (maze[row+1][col]!='#' && maze[row+1][col]!='@' && maze[row+1][col]!='X'){
           maze[row+1][col]='@';
           if (solve(row+1,col,a+1)!=-1){
             return solve(row+1,col,a+1);
           }
-          maze[row+1][col]=' ';
+          maze[row+1][col]='X';
         }
 
-        if (maze[row-1][col]!='#' && maze[row-1][col]!='@'){
+        if (maze[row-1][col]!='#' && maze[row-1][col]!='@' && maze[row-1][col]!='X'){
           maze[row-1][col]='@';
           if (solve(row-1,col,a+1)!=-1){
             return solve(row-1,col,a+1);
           }
-          maze[row-1][col]=' ';
+          maze[row-1][col]='X';
         }
 
-        if (maze[row][col+1]!='#' && maze[row][col+1]!='@'){
+        if (maze[row][col+1]!='#' && maze[row][col+1]!='@' && maze[row][col+1]!='X'){
           maze[row][col+1]='@';
           if (solve(row,col+1,a+1)!=-1){
             return solve(row,col+1,a+1);
           }
-          maze[row][col+1]=' ';
+          maze[row][col+1]='X';
         }
 
-        if (maze[row][col-1]!='#' && maze[row][col-1]!='@'){
+        if (maze[row][col-1]!='#' && maze[row][col-1]!='@' && maze[row][col-1]!='X'){
           maze[row][col-1]='@';
           if (solve(row,col-1,1)!=-1){
             return solve(row,col-1,a+1);
           }
-          maze[row][col-1]=' ';
+          maze[row][col-1]='X';
         }
 
         return -1; //so it compiles
