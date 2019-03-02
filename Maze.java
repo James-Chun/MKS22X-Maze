@@ -126,8 +126,9 @@ public class Maze{
             wait(20);
         }
 
-        if (maze[row][col]=='E')return true;
+
         for (int i=0;i<moves.length;i++){
+          if (maze[row+moves[i][0]][col+moves[i][1]]=='E')return true;
           if (maze[row+moves[i][0]][col+moves[i][1]]!='#' && maze[row+moves[i][0]][col+moves[i][1]]!='@' && maze[row+moves[i][0]][col+moves[i][1]]!='X'){
             maze[row+moves[i][0]][col+moves[i][1]]='@';
             if (solve(row+moves[i][0],col+moves[i][1]))return true;
