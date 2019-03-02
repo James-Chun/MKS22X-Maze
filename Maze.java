@@ -57,7 +57,7 @@ public class Maze{
           if (maze[i1][i2]=='S'&& s)return false;   //checks to see if one S or E has been found already and if another is found then return false
           if (maze[i1][i2]=='E'&& e)return false;
           if (maze[i1][i2]=='S')s=true;
-          if (maze[i1][i2]=='S')e=true;
+          if (maze[i1][i2]=='E')e=true;
         }
       }
       return s && e;
@@ -133,7 +133,7 @@ public class Maze{
 
         for (int i=0;i<moves.length;i++){   //looping through all possible moves (moves[][])
           if (maze[row+moves[i][0]][col+moves[i][1]]=='E')return true;   //check the spaces ahead of current position for E
-          if (maze[row+moves[i][0]][col+moves[i][1]]!='#' && maze[row+moves[i][0]][col+moves[i][1]]!='@' && maze[row+moves[i][0]][col+moves[i][1]]!='X'){
+          if (maze[row+moves[i][0]][col+moves[i][1]]!='#' && maze[row+moves[i][0]][col+moves[i][1]]!='@' && maze[row+moves[i][0]][col+moves[i][1]]!='.'){
             maze[row+moves[i][0]][col+moves[i][1]]='@';
             if (solve(row+moves[i][0],col+moves[i][1]))return true;
             maze[row+moves[i][0]][col+moves[i][1]]='.';
