@@ -5,6 +5,7 @@ public class Maze{
 
     private char[][]maze;
     private boolean animate;//false by default
+    private int[][] moves = new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
 
     /*
     Constructor loads a maze text file, and sets animate to false by default.
@@ -101,7 +102,8 @@ public class Maze{
               }
             }
           }
-          return solve(row,col,1);
+          if (solve(row,col))return 1;
+          return -1;
     }
 
     /*
@@ -115,48 +117,25 @@ public class Maze{
         All visited spots that were not part of the solution are changed to '.'
         All visited spots that are part of the solution are changed to '@'
     */
-    private int solve(int row, int col, int a){ //you can add more parameters since this is private
+    private boolean solve(int row, int col){ //you can add more parameters since this is private
 
         if(animate){  //automatic animation! You are welcome.
             clearTerminal();
             System.out.println(this);
+            System.out.println(maze[row][col]=='E');
             wait(20);
         }
 
-        if (maze[row][col]=='E')return a;
-        maze[row][col]='@';
-
-        if (maze[row+1][col]!='#' && maze[row+1][col]!='@' && maze[row+1][col]!='.'){
-          if (solve(row+1,col,a+1)!=-1){
-            return solve(row+1,col,a+1);
-          }
-        }
-
-        if (maze[row-1][col]!='#' && maze[row-1][col]!='@' && maze[row-1][col]!='.'){
-
-          if (solve(row-1,col,a+1)!=-1){
-            return solve(row-1,col,a+1);
+        if (maze[row][col]=='E')return true;
+        for (int i=0;i<moves.length;i++){
+          if (maze[row+moves[i][0]][col+moves[i][1]]!='#' && maze[row+moves[i][0]][col+moves[i][1]]!='@' && maze[row+moves[i][0]][col+moves[i][1]]!='X'){
+            maze[row+moves[i][0]][col+moves[i][1]]='@';
+            if (solve(row+moves[i][0],col+moves[i][1]))return true;
+            maze[row+moves[i][0]][col+moves[i][1]]='.';
           }
 
         }
-
-        if (maze[row][col+1]!='#' && maze[row][col+1]!='@' && maze[row][col+1]!='.'){
-
-          if (solve(row,col+1,a+1)!=-1){
-            return solve(row,col+1,a+1);
-          }
-
-        }
-
-        if (maze[row][col-1]!='#' && maze[row][col-1]!='@' && maze[row][col-1]!='.'){
-
-          if (solve(row,col-1,1)!=-1){
-            return solve(row,col-1,a+1);
-          }
-
-        }
-        maze[row][col]='.';
-        return -1; //so it compiles
+        return false; //so it compiles
     }
 
     public String toString(){
