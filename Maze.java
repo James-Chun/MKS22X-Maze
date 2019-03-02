@@ -105,7 +105,7 @@ public class Maze{
               }
             }
           }
-          if (solve(row,col))return 1;    //depending on whether solve helper returns true or false;
+          if (solve(row,col))return count();    //depending on whether solve helper returns true or false;
           return -1;
     }
 
@@ -126,7 +126,7 @@ public class Maze{
         if(animate){  //automatic animation! You are welcome.
             clearTerminal();
             System.out.println(this);
-            System.out.println(maze[row][col]=='E');
+            //System.out.println(maze[row][col]=='E');
             wait(20);
         }
 
@@ -142,6 +142,18 @@ public class Maze{
         }
         return false;
     }
+
+private int count(){
+  int count = 0;
+  for (int i1=0;i1<maze.length;i1++){
+    for (int i2=0;i2<maze[i1].length;i2++){
+      if (maze[i1][i2]=='@')count++;
+    }
+  }
+  return count;
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------
 
     public String toString(){
       String visual = "";
